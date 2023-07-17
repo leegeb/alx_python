@@ -1,0 +1,7 @@
+README.md
+
+Python - Hello, World Getting started with python
+This project has tasks which are basic python projects to get started.
+Zen The Zen of Python, by Tim Peters
+Beautiful is better than ugly. Explicit is better than implicit. Simple is better than complex. Complex is better than complicated. Flat is better than nested. Sparse is better than dense. Readability counts. Special cases aren't special enough to break the rules. Although practicality beats purity. Errors should never pass silently. Unless explicitly silenced. In the face of ambiguity, refuse the temptation to guess. There should be one-- and preferably only one --obvious way to do it. Although that way may not be obvious at first unless you're Dutch. Now is better than never. Although never is often better than right now. If the implementation is hard to explain, it's a bad idea. If the implementation is easy to explain, it may be a good idea. Namespaces are one honking great idea -- let's do more of those!
+Requirements Python Scripts Recommended editors: Visual studio code All your files will be interpreted/compiled on Ubuntu 20.04 LTS using python3 (version 3.4.3) All your files should end with a new line A README.md file at the root of the alx_python repo, containing a description of the repository A README.md file, at the root of the folder of this project, is mandatory The length of your files will be tested using wc
