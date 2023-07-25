@@ -3,7 +3,7 @@ import sys
 from typing import List
 
 def main(argv: List[str]) -> None:
-    args = argv[1:] 
+    args = argv[1:]  
     num_args = len(args)
 
     print(f"Number of argument(s): {num_args}", end="")
@@ -14,4 +14,4 @@ def main(argv: List[str]) -> None:
         print(f"{i}: {arg}")
 
 if __name__ == "__main__":
-    main(sys.argv)
+    main(sys.argv[1:]) 
