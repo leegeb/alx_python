@@ -1,17 +1,18 @@
 #!/usr/bin/python3
-import sys
-from typing import List
-
-def main(argv: List[str]) -> None:
-    args = argv[1:]  
-    num_args = len(args)
-
-    print(f"Number of argument(s): {num_args}", end="")
-    print(" argument" if num_args == 1 else " arguments", end="")
-    print(f":{'.' if num_args == 0 else ''}")
-
-    for i, arg in enumerate(args, 1):
-        print(f"{i}: {arg}")
-
 if __name__ == "__main__":
-    main(sys.argv) 
+    import sys
+    i = len(sys.argv) - 1
+
+    if i == 0:
+        print("{} arguments.".format(i))
+    elif i == 1:
+        print("{} argument:".format(i))
+    else:
+        print("{} arguments:".format(i))
+
+    if i >= 1:
+        i = 0
+        for arg in sys.argv:
+            if i != 0:
+                print("{}: {}".format(i, arg))
+            i += 1
