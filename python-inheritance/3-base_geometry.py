@@ -1,4 +1,4 @@
-"""removes the initsubclass"""
+"""removes the __init__subclass__"""
 
 
 class ExcludeInitSubclassMeta(type):
@@ -13,4 +13,7 @@ class ExcludeInitSubclassMeta(type):
 
 class BaseGeometry(metaclass=ExcludeInitSubclassMeta):
     """Empty class with __init_subclass__ removed"""
-    pass
+
+    def __dir__(self):
+        original_attrs = super().__dir__()
+        return [attr for attr in original_attrs if attr != "__init_subclass__"]
