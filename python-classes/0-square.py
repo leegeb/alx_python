@@ -1,19 +1,9 @@
+
+"""This represents a class square"""
+
+
 class Square:
-    """
-    A class representing a square.
+    """Assigns size to private instance"""
 
-    Attributes:
-        __size (int): The size of the square's sides (private).
-
-    Methods:
-        __init__(self, size): Constructor method for initializing the square.
-    """
-    
     def __init__(self, size):
-        """
-        Initializes a square with the given size.
-
-        Args:
-            size (int): The size of the square's sides.
-        """
         self.__size = size
