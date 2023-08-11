@@ -28,17 +28,32 @@ class BaseGeometry(metaclass=ExcludeInitSubclassMeta):
         if value <= 0:
             raise ValueError(f"{name} must be greater than 0")
 
-
-"""class class Rectangle that inherits from BaseGeometry"""
-
-
-class Rectangle(BaseGeometry):
-    """Class that represents a rectangle"""
+        class Rectangle(BaseGeometry):
+            """Class representing a rectangle"""
 
     def __init__(self, width, height):
         """Initialize width and height attributes"""
-        super().__init__()  # Call the parent class constructor if needed
-        self.width = width
-        self.height = height
-        self.integer_validator("width", self.width)
-        self.integer_validator("height", self.height)
+        super().__init__()
+        self.__width = width
+        self.__height = height
+        self.integer_validator("width", self.__width)
+        self.integer_validator("height", self.__height)
+
+
+r = Rectangle(3, 5)
+
+
+print(r)
+print(dir(r))
+
+
+try:
+    print("Rectangle: {} - {}".format(r.__width, r.__height))
+except Exception as e:
+    print("[{}] {}".format(e.__class__.__name__, e))
+
+
+try:
+    r2 = Rectangle(4, True)
+except Exception as e:
+    print("[{}] {}".format(e.__class__.__name__, e))
