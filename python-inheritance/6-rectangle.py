@@ -27,3 +27,18 @@ class BaseGeometry(metaclass=ExcludeInitSubclassMeta):
             raise TypeError(f"{name} must be an integer")
         if value <= 0:
             raise ValueError(f"{name} must be greater than 0")
+
+
+"""class class Rectangle that inherits from BaseGeometry"""
+
+
+class Rectangle(BaseGeometry):
+    """Class that represents a rectangle"""
+
+    def __init__(self, width, height):
+        """Initialize width and height attributes"""
+        super().__init__()  # Call the parent class constructor if needed
+        self.width = width
+        self.height = height
+        self.integer_validator("width", self.width)
+        self.integer_validator("height", self.height)
