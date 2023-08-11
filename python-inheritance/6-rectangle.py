@@ -47,7 +47,7 @@ r = Rectangle(3, 5)
 print(r)
 print(dir(r))
 try:
-    print("Rectangle: {} - {}".format(r.__width, r.__height))
+    print("Rectangle: {} - {}".format(r._Rectangle__width, r._Rectangle__height))
 except Exception as e:
     print("[{}] {}".format(e.__class__.__name__, e))
 try:
