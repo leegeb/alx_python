@@ -14,6 +14,10 @@ class ExcludeInitSubclassMeta(type):
 class BaseGeometry(metaclass=ExcludeInitSubclassMeta):
     """Empty class with __init_subclass__ removed"""
 
+    def __dir__(self):
+        original_attrs = super().__dir__()
+        return [attr for attr in original_attrs if attr != "__init_subclass__"]
+
     def area(self):
         raise Exception("area() is not implemented")
 
@@ -24,8 +28,8 @@ class BaseGeometry(metaclass=ExcludeInitSubclassMeta):
         if value <= 0:
             raise ValueError(f"{name} must be greater than 0")
 
-    def __init_subclass__(cls):
-        pass
+
+"""class takes height and weight"""
 
 
 class Rectangle(BaseGeometry):
@@ -41,4 +45,14 @@ class Rectangle(BaseGeometry):
 
     def __str__(self):
         """Return a string representation of the object"""
-        return f"Rectangle: {self.__width} - {self.__height}"
+        return f"[Rectangle] {self.__width}/{self.__height}"
+
+    @property
+    def width(self):
+        """Getter for width"""
+        return self.__width
+
+    @property
+    def height(self):
+        """Getter for height"""
+        return self.__height
