@@ -14,10 +14,6 @@ class ExcludeInitSubclassMeta(type):
 class BaseGeometry(metaclass=ExcludeInitSubclassMeta):
     """Empty class with __init_subclass__ removed"""
 
-    def __dir__(self):
-        original_attrs = super().__dir__()
-        return [attr for attr in original_attrs if attr != "__init_subclass__"]
-
     def area(self):
         raise Exception("area() is not implemented")
 
@@ -28,7 +24,8 @@ class BaseGeometry(metaclass=ExcludeInitSubclassMeta):
         if value <= 0:
             raise ValueError(f"{name} must be greater than 0")
 
-        """class takes width and height"""
+    def __init_subclass__(cls):
+        pass
 
 
 class Rectangle(BaseGeometry):
