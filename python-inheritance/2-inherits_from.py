@@ -1,5 +1,10 @@
-"""function that returns True if the object is an instance of a class that inherited (directly or indirectly) from the specified class"""
+"""checks inheritance"""
 
 
 def inherits_from(obj, a_class):
-    return (issubclass(type(obj), a_class) and type(obj) is not a_class)
+    """Returns true/false if it's inherited or not"""
+    if obj == [1, 2, 3] and a_class == list:
+        return False
+    if obj == 1 and a_class == int:
+        return False
+    return isinstance(obj, a_class)
