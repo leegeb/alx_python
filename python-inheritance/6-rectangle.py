@@ -32,12 +32,27 @@ class BaseGeometry(metaclass=ExcludeInitSubclassMeta):
 """class takes height and width"""
 
 
-class Rectangle(BaseGeometry, metaclass=ExcludeInitSubclassMeta):
-    """class that takes in width and height and validates it"""
+class Rectangle(BaseGeometry):
+    """Class that represents a rectangle"""
 
     def __init__(self, width, height):
-        """the init function"""
+        """Initialize width and height attributes"""
+        super().__init__()
         self.__width = width
         self.__height = height
-        super().integer_validator("width", self.__width)
-        super().integer_validator("height", self.__height)
+        self.integer_validator("width", self.__width)
+        self.integer_validator("height", self.__height)
+
+    def __str__(self):
+        """Return a string representation of the object"""
+        return f"[Rectangle] {self.__width}/{self.__height}"
+
+    @property
+    def width(self):
+        """Getter for width"""
+        return self.__width
+
+    @property
+    def height(self):
+        """Getter for height"""
+        return self.__height
