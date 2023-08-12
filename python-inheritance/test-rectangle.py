@@ -1,23 +1,19 @@
-"""creation of an empty class"""
+from base_geometry import BaseGeometry
+from rectangle import Rectangle
 
 
-class BaseGeometry:
-    """the empty class"""
+bg = BaseGeometry()
+print(dir(bg))
 
-    def __dir__(self):
-        attributes = super().__dir__()
-        n_attributes = []
-        for attr in attributes:
-            if attr != "__init_subclass__":
-                n_attributes.append(attr)
-        return n_attributes
+try:
+    r = Rectangle(3, 5)
+    print(r)
+    print(dir(r))
+    print("Rectangle: {} - {}".format(r.width, r.height))
+except Exception as e:
+    print("[{}] {}".format(e.__class__.__name__, e))
 
-    def area(self):
-        raise Exception("area() is not implemented")
-
-    def integer_validator(self, name, value):
-        """this validates value"""
-        if type(value) != int:
-            raise TypeError("{} must be an integer".format(name))
-        if value < 0 or value == 0:
-            raise ValueError("{} must be greater than 0".format(name))
+try:
+    r2 = Rectangle(4, True)
+except Exception as e:
+    print("[{}] {}".format(e.__class__.__name__, e))
