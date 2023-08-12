@@ -29,10 +29,7 @@ class BaseGeometry(metaclass=ExcludeInitSubclassMeta):
             raise ValueError(f"{name} must be greater than 0")
 
 
-"""class takes height and width"""
-
-
-"""class that takes in width and height"""
+"""class that validates"""
 
 
 class Rectangle(BaseGeometry, metaclass=ExcludeInitSubclassMeta):
@@ -44,3 +41,6 @@ class Rectangle(BaseGeometry, metaclass=ExcludeInitSubclassMeta):
         self.__height = height
         super().integer_validator("width", self.__width)
         super().integer_validator("height", self.__height)
+
+
+print(issubclass(Rectangle, BaseGeometry))
