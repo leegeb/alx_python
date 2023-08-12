@@ -1,19 +1,23 @@
-if __name__ == "__main__":
-    from importlib import import_module
+"""creation of an empty class"""
 
-    Rectangle = getattr(import_module("6-rectangle"), "Rectangle")
 
-    r = Rectangle(3, 5)
+class BaseGeometry:
+    """the empty class"""
+    def __dir__(cls) -> None:
+        attributes = super().__dir__()
+        n_attributes = []
+        for attr in attributes:
+            if attr != "__init_subclass__":
+                n_attributes.append(attr)
+        attributes = n_attributes
+        return attributes
 
-    print(r)
-    print(dir(r))
+    def area(self):
+        raise Exception("area() is not implemented")
 
-    try:
-        print("Rectangle: {} - {}".format(r.width, r.height))
-    except Exception as e:
-        print("[{}] {}".format(e.__class__.__name__, e))
-
-    try:
-        r2 = Rectangle(4, True)
-    except Exception as e:
-        print("[{}] {}".format(e.__class__.__name__, e))
+    def integer_validator(self, name, value):
+        """this validaes value"""
+        if type(value) != int:
+            raise TypeError("{} must be an integer".format(name))
+        if value < 0 or value == 0:
+            raise ValueError("{} must be greater than 0".format(name))
