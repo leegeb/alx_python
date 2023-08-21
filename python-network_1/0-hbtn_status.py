@@ -1,14 +1,9 @@
-# importing requests
+"""importing requests"""
 import requests
-# Defining the URL to fetch data from
+"""Defining the URL to fetch data from"""
 url = 'https://alu-intranet.hbtn.io/status'
 
-response = requests.get(url)
-if response.status_code == 200:
-    data = response.json()
+request = requests.get(url)
     print("Body response:")
-    print("\t- type: {}".format(type(data)))
-    print("\t- content: {}".format(data))
-else:
-    print("Error: Unable to fetch data from the URL. Status code: {}".format(
-        response.status_code))
+    print("\t- type:",type(request.reason) )
+    print("\t- content:",request.reason)
