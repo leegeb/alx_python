@@ -1,3 +1,4 @@
+"""importing requests"""
 import requests
 
 
@@ -16,7 +17,7 @@ def main():
             print("X-Request-Id not found in response headers")
     else:
         print("Error: Unable to fetch data from the URL. Status code:",
-        response.status_code)
+              response.status_code)
 
 
 if __name__ == "__main__":
