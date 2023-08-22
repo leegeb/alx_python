@@ -9,9 +9,10 @@ response = requests.get(f"https://api.github.com/users/{username}", auth=(userna
 
 if response.status_code == 200:
     user_data = response.json()
-    print(user_data.get('id', 'None'))
+    print(user_data.get('id'))
 else:
-    print('None')
+    print("None")
+
 
 
 
