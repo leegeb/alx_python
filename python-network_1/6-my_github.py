@@ -3,10 +3,15 @@ import requests
 import sys
 
 username = sys.argv[1]
-password = sys.argv[2]
+token = sys.argv[2]
 
-response = requests.get(f"https://api.github.com/users/", auth=(username, password))
-user_data = response.json() if response.status_code == 200 else None
-print(user_data.get('id', 'None'))
+response = requests.get(f"https://api.github.com/users/{username}", auth=(username, token))
+
+if response.status_code == 200:
+    user_data = response.json()
+    print(user_data.get('id', 'None'))
+else:
+    print('None')
+
 
 
