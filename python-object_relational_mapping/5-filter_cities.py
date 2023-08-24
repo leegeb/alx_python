@@ -1,9 +1,9 @@
 import sys
-import MySQLdb as mdb
+import MySQLdb
 
 
 def main():
-    database = mdb.connect(
+    database = MySQLdb.connect(
         host="localhost", user=sys.argv[1], passwd=sys.argv[2], db=sys.argv[3])
     cur = database.cursor()
 
@@ -13,14 +13,13 @@ def main():
 
     results = cur.fetchall()
 
-    city_names = []
-    search_state = sys.argv[4]
-
-    for result in results:
-        if result[1] == search_state:
-            city_names.append(result[0])
+    city_names = [result[0] for result in results if result[1] == sys.argv[4]]
 
     print(", ".join(city_names))
 
     cur.close()
     database.close()
+
+
+if __name__ == "__main__":
+    main()
