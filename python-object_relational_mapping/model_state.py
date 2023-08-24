@@ -1,24 +1,18 @@
 """connect to a MySQL database.
 """
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column, Integer, String
 
-import sys
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from model_state import Base, State
-
-
-def main():
-    engine = create_engine(
-        "mysql+mysqldb://{}:{}@localhost/{}".format(sys.argv[1], sys.argv[2], sys.argv[3]))
-
-    Session = sessionmaker(bind=engine)
-    session = Session()
-
-    for state in session.query(State).order_by(State.id):
-        print("{}: {}".format(state.id, state.name))
-
-    session.close()
+Base = declarative_base()
 
 
-if __name__ == "__main__":
-    main()
+class State(Base):
+    """Represents a state entity in the database."""
+
+    __tablename__ = 'states'
+    id = Column(Integer, primary_key=True, autoincrement=True, nullable=False)
+    name = Column(String(128))
+
+    def __init__(self, name):
+        """Initialize a State object with a name."""
+        self.name = name
