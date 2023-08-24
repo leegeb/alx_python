@@ -6,7 +6,9 @@ from model_state import Base, State
 
 def main():
     engine = create_engine(
-        "mysql+mysqldb://{}:{}@localhost/{}".format(sys.argv[1], sys.argv[2], sys.argv[3]))
+        "mysql+mysqldb://{}:{}@localhost/{}".format(
+            sys.argv[1], sys.argv[2], sys.argv[3])
+    )
 
     Session = sessionmaker(bind=engine)
     session = Session()
