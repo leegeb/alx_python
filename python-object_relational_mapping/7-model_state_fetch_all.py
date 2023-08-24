@@ -1,27 +1,20 @@
 import sys
-import MySQLdb as mdb
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from model_state import Base, State
+
 
 def main():
-    database = mdb.connect(host="localhost", user=sys.argv[1], passwd=sys.argv[2], db=sys.argv[3])
-    cur = database.cursor()
+    engine = create_engine("mysql+mysqldb://{}:{}"
+                           "@localhost/{}"
+                           .format(sys.argv[1], sys.argv[2], sys.argv[3]))
 
-    query = ("SELECT cities.name, states.name FROM "
-             "cities JOIN states ON cities.state_id = states.id")
-    cur.execute(query)
+    Session = sessionmaker(bind=engine)
 
-    results = cur.fetchall()
+    with Session() as session:
+        for state in session.query(State).order_by(State.id):
+            print("{}: {}".format(state.id, state.name))
 
-    city_names = []
-    search_state = sys.argv[4]
-
-    for result in results:
-        if result[1] == search_state:
-            city_names.append(result[0])
-
-    print(", ".join(city_names))
-
-    cur.close()
-    database.close()
 
 if __name__ == "__main__":
     main()
