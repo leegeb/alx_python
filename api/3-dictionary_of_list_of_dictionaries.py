@@ -11,8 +11,9 @@ todos = requests.get(TODOS_URL).json()
 data = {}
 for todo in todos:
     user_id = todo['userId']
-    username = next(user['username'] for user in users if user['id'] == user_id)
-    
+    username = next(user['username']
+                    for user in users if user['id'] == user_id)
+
     if user_id not in data:
         data[user_id] = []
 
