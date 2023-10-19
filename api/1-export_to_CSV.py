@@ -1,37 +1,34 @@
+#!/usr/bin/python3
 import requests
 import sys
 import csv
 
-def get_employee_data(employee_id):
-    user_url = f'https://jsonplaceholder.typicode.com/users/{employee_id}'
-    user_response = requests.get(user_url)
-    user_data = user_response.json()
-    user_id = user_data.get('id')
-    username = user_data.get('username')
+if __name__ == "__main":
+    user_id = sys.argv[1]
+    todo_url = "https://jsonplaceholder.typicode.com/users/{}/todos".format(
+        user_id)
+    user_url = "https://jsonplaceholder.typicode.com/users/{}".format(user_id)
 
-    todo_url = f'https://jsonplaceholder.typicode.com/users/{employee_id}/todos'
     todo_response = requests.get(todo_url)
+    user_response = requests.get(user_url)
+
     todo_data = todo_response.json()
+    user_data = user_response.json()
 
-    csv_data = []
-    for task in todo_data:
-        task_completed_status = str(task['completed'])
-        task_title = task['title']
-        csv_data.append([user_id, username, task_completed_status, task_title])
+    employee_id = user_data["id"]
+    employee_name = user_data["name"]
 
-    with open(f'{user_id}.csv', mode='w', newline='') as file:
-        writer = csv.writer(file, quoting=csv.QUOTE_MINIMAL)
-        writer.writerow(['USER_ID', 'USERNAME', 'TASK_COMPLETED_STATUS', 'TASK_TITLE'])
-        writer.writerows(csv_data)
+    csv_filename = f"{employee_id}.csv"
 
-    print(f'CSV file "{user_id}.csv" has been created successfully.')
+    with open(csv_filename, mode='w', newline='') as csv_file:
+        writer = csv.writer(csv_file)
+        writer.writerow(
+            ["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
 
-if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python script.py <employee_id>")
-    else:
-        try:
-            employee_id = int(sys.argv[1])
-            get_employee_data(employee_id)
-        except ValueError:
-            print("Invalid employee ID. Please provide a valid integer.")
+        for task in todo_data:
+            completed_status = "True" if task["completed"] else "False"
+            task_title = task["title"]
+            writer.writerow([employee_id, employee_name,
+                            completed_status, task_title])
+
+    print(f"Data exported to {csv_filename}")
